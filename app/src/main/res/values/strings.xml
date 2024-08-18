@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Movie profiler</string>
+    <string name="title_activity_movie_profile">MovieProfileActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="movieProfileText">Movie name</string>
+    <string name="goWebsite">Website</string>
+    <string name="goShare">Share</string>
+    <string name="goLike">Like</string>
+    <string name="goBack">Go back</string>
+    <string name="movieProfileYear">Movie year</string>
+    <string name="movieProfileRated">Movie rated</string>
+    <string name="movieProfileReleased">Movie released</string>
+    <string name="movieProfileRuntime">Movie runtime</string>
+    <string name="movieProfileGenre">Movie genre</string>
+    <string name="movieProfileDirector">Movie director</string>
+    <string name="movieProfileWriter">Movie writer</string>
+    <string name="movieProfileActors">Movie actor</string>
+    <string name="movieProfilePlot">Movie plot</string>
+    <string name="movieProfileLanguage">Movie language</string>
+    <string name="movieProfileCountry">Movie country</string>
+    <string name="movieProfileAwards">Movie awards</string>
+    <string name="movieProfilePoster">Movie poster</string>
+    <string name="movieProfileMetaScore">Movie metaScore</string>
+    <string name="movieProfileImdbRating">Movie imdbRating</string>
+    <string name="movieProfileImdbVotes">Movie imdbVotes</string>
+    <string name="movieProfileType">Movie type</string>
+    <string name="movieProfileTotalSeasons">Movie total seasons</string>
+    <string name="movieProfileResponse">Movie response</string>
+    <string name="type">Type</string>
+    <string name="year">Year</string>
+    <string name="titleAdapter">Title: </string>
+    <string name="yearAdapter">Year: </string>
+    <string name="typeAdapter">Type: </string>
+    <string name="search">Search…</string>
+    <string name="search_hint">Movie search</string>
+    <string name="gfg">Testament du test</string>
+    <string name="favorite">Favorite</string>
+    <string name="email">eMail</string>
+    <string name="movie_title">Movie title</string>
+    <string name="hello_world">Hello world</string>
+    <string name="movieProfileRatings1">Ratings one</string>
+    <string name="movieProfileRatings2">Ratings two</string>
+    <string name="movieProfileRatings3">Ratings three</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <font android:font="@font/nightpumpkindtwo"
+        android:fontWeight="40"
+        android:fontStyle="normal" />
+
+
+    <font android:font="@font/ronysiswadi"
+        android:fontWeight="40"
+        android:fontStyle="normal" />
+
+    <font android:font="@font/ronysiswadibold"
+        android:fontWeight="40"
+        android:fontStyle="normal" />
+
+
+</font-family>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:actionLayout="@layout/simple_search_view_item"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        android:id="@+id/search_bar"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:tooltipText="Type the right name of your movie here"/>
+
+    <item android:id="@+id/action_website"
+        android:title="@string/goWebsite"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/icons8_internet_48"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/email"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/icons8_circled_envelope_48"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/icon_share"
+        android:title="@string/goShare"
+        app:showAsAction="ifRoom"/>
+
+</menu>

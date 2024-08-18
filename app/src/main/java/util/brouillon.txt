@@ -1,0 +1,1468 @@
+
+        /*JsonArrayRequest movieRequest = new JsonArrayRequest(Request.Method.GET
+                , Constants.REST_URL, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject movieObject = response.getJSONObject(0);
+                    Log.v("Data : ", movieObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });*/
+
+        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET
+                , Constants.REST_URL_TEST1, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Log.v("Test Bello :", response.toString());
+                            JSONObject movieObject = response.getJSONObject(0);
+                            Log.v("Data : ", movieObject.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("X-RapidAPI-Key"
+                        , "3c67451418mshe39efddd63499c1p1b3cc6jsn50774751c07e");
+                params.put("X-RapidAPI-Host", "movie-database-alternative.p.rapidapi.com");
+
+                return params;
+            }
+        };
+
+        getRequest.setRetryPolicy(
+                new DefaultRetryPolicy(
+                        500000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                )
+        );
+
+----------------------------------------------------------------------------------------------
+
+    public JsonArrayRequest requestWithSomeHttpHeaders(String url) {
+        //RequestQueue queue = Volley.newRequestQueue(this);
+        //String url = "http://www.somewebsite.com";
+        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Log.v("Test Bello :", response.toString());
+                            JSONObject movieObject = response.getJSONObject(0);
+                            Log.v("Data : ", movieObject.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("X-RapidAPI-Key"
+                        , "3c67451418mshe39efddd63499c1p1b3cc6jsn50774751c07e");
+                params.put("X-RapidAPI-Host", "movie-database-alternative.p.rapidapi.com");
+
+                return params;
+            }
+        };
+        //queue.add(getRequest);
+        return getRequest;
+    }
+
+--------------------------------------------------------------------------------------------------
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_search_black_24dp</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@null</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">@string/search_hint</item>
+    </style>
+
+--------------------------------------------------------------------------------------------------
+<string name="ko_result">"We couldn't find any result. Try again. "</string>
+<string name="ok_result">"We couldn't find any result. Try again. "</string>
+--------------------------------------------------------------------------------------------------
+//if (!movieModel.SEARCH_FOUND) {
+if (tempMovies.isEmpty()) {
+}
+            Toast.makeText(getApplicationContext(),
+                    "We couldn't find any result for. TRY AGAIN."
+                    , Toast.LENGTH_LONG).show();
+            tempMovies.clear();
+        }
+--------------------------------------------------------------------------------------------------
+/*if (!tempMovies.isEmpty()){
+                                Collections.copy(movies, tempMovies);
+                                //tempMovies.clear();
+                            }*/
+
+                                //Collections.copy(movies, tempMovies);
+--------------------------------------------------------------------------------------------------
+android:theme="@style/Theme.MovieProfiler"
+
+android:theme="@style/Theme.FlexBoxLayout"
+--------------------------------------------------------------------------------------------------
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieProfileActivity"
+    android:scrollbarDefaultDelayBeforeFade="@integer/material_motion_duration_long_1">
+
+<!--    <com.google.android.flexbox.FlexboxLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:flexWrap="wrap"-->
+<!--        app:alignItems="stretch"-->
+<!--        app:alignContent="stretch"-->
+<!--        android:id="@+id/flexbox_layout" >-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textview1"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            app:layout_flexBasisPercent="50%"-->
+<!--            android:text="Champion Kapangala"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textview2"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            app:layout_alignSelf="center"-->
+<!--            android:text="Masuwa"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textview3"-->
+<!--            android:layout_width="160dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            app:layout_alignSelf="flex_end"-->
+<!--            android:text="Kalayi boeing"-->
+<!--            />-->
+<!--    </com.google.android.flexbox.FlexboxLayout>-->
+
+<!--    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView-->
+<!--        android:id="@+id/listViewMovieProfile"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileName"
+        android:textStyle="bold"
+        android:textColor="#ff212121"
+        android:textSize="26sp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/movieProfileText" />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/movieProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_below="@+id/movieProfileName"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileType"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileType"
+        android:layout_below="@id/movieProfileImage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileYear"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileYear"
+        android:layout_below="@id/movieProfileType"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileRated"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileRated"
+        android:layout_below="@id/movieProfileYear" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileReleased"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileReleased"
+        android:layout_below="@id/movieProfileRated" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileRuntime"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileRuntime"
+        android:layout_below="@id/movieProfileReleased" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileGenre"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileGenre"
+        android:layout_below="@id/movieProfileRuntime" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileDirector"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileDirector"
+        android:layout_below="@id/movieProfileGenre" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileWriter"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileWriter"
+        android:layout_below="@id/movieProfileDirector" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileActors"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileActors"
+        android:layout_below="@id/movieProfileWriter" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfilePlot"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfilePlot"
+        android:layout_below="@id/movieProfileActors" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileLanguage"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileLanguage"
+        android:layout_below="@id/movieProfilePlot" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileCountry"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileCountry"
+        android:layout_below="@id/movieProfileLanguage" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileAwards"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileAwards"
+        android:layout_below="@id/movieProfileCountry" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfilePoster"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfilePoster"
+        android:layout_below="@id/movieProfileAwards" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileMetaScore"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileMetaScore"
+        android:layout_below="@id/movieProfilePoster" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileImdbRating"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileImdbRating"
+        android:layout_below="@id/movieProfileMetaScore" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileImdbVotes"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileImdbVotes"
+        android:layout_below="@id/movieProfileImdbRating" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileTotalSeasons"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileTotalSeasons"
+        android:layout_below="@id/movieProfileImdbVotes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieProfileResponse"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+        android:text="@string/movieProfileResponse"
+        android:layout_below="@id/movieProfileTotalSeasons" />
+
+</RelativeLayout>
+
+--------------------------------------------------------------------------------------------------
+<style name="Theme.MovieProfiler.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MovieProfiler.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_search_black_24dp</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@null</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">@string/search_hint</item>
+    </style>
+
+
+
+    <!-- Base application theme. -->
+    <style name="Theme.FlexBoxLayout" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/teal_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.MovieProfiler.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MovieProfiler" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+--------------------------------------------------------------------------------------------------
+<style name="Theme.AppTheme" parent="Theme.MovieProfiler">
+        <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
+    </style>
+
+    <style name="Theme.AppTheme.TranslucentActionBar">
+        <item name="android:actionBarStyle">@style/Widget.Light.ActionBar.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Theme.AppTheme.Light.TranslucentActionBar" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/Widget.Light.ActionBar.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+--------------------------------------------------------------------------------------------------
+  <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="72dp"
+        app:contentInsetStart="72dp"
+        app:popupTheme="@style/Widget.AppCompat.ActionBar.Solid"
+        app:theme="@style/Widget.AppCompat.ActionBar.Solid">
+
+        <LinearLayout
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#b3ffffff" />
+
+            <ImageView
+                android:id="@+id/search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:src="@drawable/ic_clear_black_24dp" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>-->
+
+    <!--<androidx.appcompat.widget.SearchView
+        android:id="@+id/floating_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:floatingSearch_searchHint="Search..."
+        app:floatingSearch_suggestionsListAnimDuration="250"
+        app:floatingSearch_showSearchKey="false"
+        app:floatingSearch_leftActionMode="showHamburger"
+        app:floatingSearch_menu="@menu/menu"
+        app:floatingSearch_close_search_on_keyboard_dismiss="true"/>-->
+
+--------------------------------------------------------------------------------------------------
+android:layout_width="410dp"
+        android:layout_height="650dp"
+--------------------------------------------------------------------------------------------------
+<TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="?android:colorBackground"
+            android:padding="16dp"
+            android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:colorBackground"
+                android:padding="16dp"
+                android:text="Govinal naya naya" />
+--------------------------------------------------------------------------------------------------
+
+            <!--<LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/windowBackground"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="22dp"
+                    android:textSize="18sp"
+                    android:text="@string/gfg"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:id="@+id/testText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileType"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileType"
+                    android:layout_below="@id/testText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileYear"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileYear"
+                    android:layout_below="@id/movieProfileType"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileRated"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileRated"
+                    android:layout_below="@id/movieProfileYear" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileReleased"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileReleased"
+                    android:layout_below="@id/movieProfileRated" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileRuntime"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileRuntime"
+                    android:layout_below="@id/movieProfileReleased" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileGenre"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileGenre"
+                    android:layout_below="@id/movieProfileRuntime" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileDirector"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileDirector"
+                    android:layout_below="@id/movieProfileGenre" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileWriter"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileWriter"
+                    android:layout_below="@id/movieProfileDirector" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileActors"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileActors"
+                    android:layout_below="@id/movieProfileWriter" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfilePlot"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfilePlot"
+                    android:layout_below="@id/movieProfileActors" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileLanguage"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileLanguage"
+                    android:layout_below="@id/movieProfilePlot" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileCountry"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileCountry"
+                    android:layout_below="@id/movieProfileLanguage" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileAwards"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileAwards"
+                    android:layout_below="@id/movieProfileCountry" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfilePoster"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfilePoster"
+                    android:layout_below="@id/movieProfileAwards" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileMetaScore"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileMetaScore"
+                    android:layout_below="@id/movieProfilePoster" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileImdbRating"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileImdbRating"
+                    android:layout_below="@id/movieProfileMetaScore" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileImdbVotes"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileImdbVotes"
+                    android:layout_below="@id/movieProfileImdbRating" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileTotalSeasons"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileTotalSeasons"
+                    android:layout_below="@id/movieProfileImdbVotes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movieProfileResponse"
+                    android:textColor="#ff212121"
+                    android:textSize="16sp"
+                    android:text="@string/movieProfileResponse"
+                    android:layout_below="@id/movieProfileTotalSeasons" />
+
+            </LinearLayout>-->
+
+
+--------------------------------------------------------------------------------------------------
+<TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="22dp"
+                android:textSize="18sp"
+                android:text="@string/gfg"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:id="@+id/testText"/>
+--------------------------------------------------------------------------------------------------
+android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity
+--------------------------------------------------------------------------------------------------
+websiteMovieObject = "https://developer.android.com/";
+--------------------------------------------------------------------------------------------------
+
+        //mToolbar.setBackground(mActionBarBackgroundDrawable);
+//        Intent intent = new Intent(MovieProfileActivity.this, MainActivity.class);
+//        startActivity(intent);
+//        Log.v("Test back button good :", intent.toString());
+//        finish();
+--------------------------------------------------------------------------------------------------
+
+                "                DVD : " + movieProfile.ge + "<br><br>" +
+                "                BoxOffice : " + movieProfile + "<br><br>" +
+                "                Production : " + movieProfile. + "<br><br>" +
+                "                Website : " + movieProfile.getCountry() + "<br><br>" +
+--------------------------------------------------------------------------------------------------
+           <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="?android:colorBackground" >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="?android:colorBackground" >
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/score"/>
+
+                    <TextView
+                        android:id="@+id/cardScoreText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:textSize="60sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="?android:colorBackground" >
+
+                    <ImageView
+                        android:id="@+id/score1"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/score"/>
+
+                    <TextView
+                        android:id="@+id/cardScoreText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:textSize="60sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="?android:colorBackground" >
+
+                    <ImageView
+                        android:id="@+id/score2"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/score"/>
+
+                    <TextView
+                        android:id="@+id/cardScoreText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:textSize="60sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
+--------------------------------------------------------------------------------------------------
+android:theme="@style/Theme.Imdb"
+--------------------------------------------------------------------------------------------------
+<com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@mipmap/ic_launcher"
+                    android:text="Chip icon"
+                    android:theme="@style/Theme.Material3.Light" />
+--------------------------------------------------------------------------------------------------
+<com.google.android.material.chip.Chip
+                        android:id="@+id/toHide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/Theme.Material3.Light" />
+--------------------------------------------------------------------------------------------------
+JSONArray array = new JSONArray(ratings);
+                            Log.v("Array 1 : ", array.toString());
+                            JSONObject jsonObject = array.getJSONObject(0);
+                            Log.v("Object 1 : ", jsonObject.toString());
+                            Log.v("Object 1 inside 1: ", jsonObject.getString("Source"));
+                            Log.v("Object 1 inside 2: ", jsonObject.getString("Value"));
+--------------------------------------------------------------------------------------------------
+ private void avoidEmptyChip(Chip chip, String str){
+        if ("N/A".equals(str)){
+            chip.setText(str);
+        }
+    }
+--------------------------------------------------------------------------------------------------
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintLeft_toRightOf="@+id/chipRating"
+--------------------------------------------------------------------------------------------------
+<androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipMetaScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipIcon="@drawable/speedometer"
+                        android:text="Meta score"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/chipRating" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipIcon="@drawable/rating_star"
+                        android:text="Rating"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:layout_constraintLeft_toLeftOf="@+id/chipMetaScore"
+                        app:layout_constraintRight_toLeftOf="@+id/chipVote" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipIcon="@drawable/movievote"
+                        android:text="Vote"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:layout_constraintLeft_toLeftOf="@+id/chipRating"
+                        app:layout_constraintRight_toLeftOf="@+id/chipRating2" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRating2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipIcon="@drawable/percentage"
+                        android:text="N/A"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:layout_constraintLeft_toLeftOf="@+id/chipVote"
+                        app:layout_constraintRight_toLeftOf="@+id/chipRating3" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRating3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipIcon="@drawable/metascore"
+                        android:text="N/A"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/chipRating2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+--------------------------------------------------------------------------------------------------
+style="?attr/ratingBarStyleIndicator"
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_search_black_24dp</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@null</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">@string/search_hint</item>
+    </style>
+
+    <style name="Widget" />
+
+    <style name="Widget.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" />
+
+    <style name="Widget.Light" />
+
+    <style name="Widget.Light.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" />
+
+    <style name="Widget.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Light.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Movie" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/movie_light_rose</item>
+        <item name="colorPrimaryDark">@color/movie_maroon</item>
+        <item name="colorAccent">@color/teal_200</item>
+    </style>
+
+    <style name="Baroque" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#F2BAD0</item>
+        <item name="android:textSize">14pt</item>
+        <item name="fontFamily">baroque_script</item>
+    </style>
+
+</resources>
